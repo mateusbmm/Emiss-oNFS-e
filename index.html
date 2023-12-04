@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="nota.css">
+    <link rel="stylesheet" href="form.css">
+    
+
+    <title>Emissão de Nota Fiscal</title>
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="form">
+            <form id="formNotaFiscal">
+                <div>
+                    <h2>Dados do Serviço</h2>
+                    <br>
+                    <div>
+                        <label for="valorServico">Valor do Serviço:</label>
+                        <input type="number" id="valorServico" required>
+                    </div>
+                    <div>
+                        <label for="imposto">Percentual de Imposto (%):</label>
+                        <input type="number" id="imposto" required>
+
+                    </div>
+                    <div>
+                        <label for="descricao">Descrição do Serviço:</label>
+                        <input type="text" id="descricao" required>
+
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Dados do destinatário</h2>
+                    <br>
+                    <div>
+                        <label for="nome">Nome (ou Razão social em caso de pessoa jurídica): </label>
+                        <input type="texe" id="nome" required>
+                    </div>
+
+                    <div>
+                        <label for="cpf">CPF (ou CNPJ em caso de pessoa jurídica)</label>
+                        <input type="text" id="cpf" required>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="cep">CEP: </label>
+                            <input type="text" id="cep">
+
+                            <label for="cidade">Cidade: </label>
+                            <input type="text" id="cidade">
+
+                            <label for="estado">Estado: </label>
+                            <input type="text" id="estado">
+                        </div>
+                        <div>
+                            <label for="rua">Rua: </label>
+                            <input type="text" id="rua">
+                            <label for="numero">Numero</label>
+                            <input type="text" id="numero">
+                            <label for="complemento">Complemento: </label>
+                            <input type="text" id="complemento">
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <br>
+
+                <br>
+                <br>
+                <button type="button" onclick="calcularNotaFiscal()">Calcular Nota Fiscal</button>
+            </form>
+        </div>
+
+
+        <div id="notaFiscal">
+            <div class="head">
+                <div class="id1">
+                    <h2>Nota Fiscal</h2>
+                </div>
+                <div class="dadosNota">
+                    <div class="dadosNotaContent">
+                        <p>Numero da nota:</p>
+                        <div id="numeroNota">
+                            xxxxxxxxx
+                        </div>
+                    </div>
+                    <div class="dadosNotaContent">
+                        <p>data de emissão:</p>
+                        <div id="dataEmissao">
+                            xx/xx/xxxx
+                        </div>
+                    </div>
+                    <div class="dadosNotaContent">
+                        <p>Codigo de Verificação:</p>
+                        <div id="codVerifica">
+                            0000000
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h4>Prestador do Serviço</h4>
+            <div class="dados">
+
+                <div class="id2">
+                    <div class="incricaoPrestador">
+                        <h4>InscricaoMunicipal:</h4>
+                        <p id="IM">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="nomePrestadorNota">
+                        <h4>Nome/Razão Social: </h4>
+                        <p id="nomePrestadorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="cpfPrestadorNota">
+                        <h4>CPF / CNPJ: </h4>
+                        <p id="cpfPrestadorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="enderecoPrestadorNota">
+                        <h4>Endereco prestador: </h4>
+                        <p id="enderecoPrestadorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="cidadeUF">
+                        <div>
+                            <h4>Cidade: </h4>
+                            <p id="cidadePrestadorNota">XXXXXXXXXX</p>
+                        </div>
+                        <div>
+                            <h4>UF: </h4>
+                            <p id="UFPrestadorNota">XX</p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <h4>Tomador do Serviço</h4>
+            <div class="dados">
+
+                <div class="id2">
+
+                    <div class="nomePrestadorNota">
+                        <h4>Nome/Razão Social: </h4>
+                        <p id="nomereceptorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="cpfPrestadorNota">
+                        <h4>CPF / CNPJ: </h4>
+                        <p id="cpfrecptorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="enderecoPrestadorNota">
+                        <h4>Endereco prestador: </h4>
+                        <p id="enderecoReceptorNota">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="cidadeUF">
+                        <div>
+                            <h4>Cidade: </h4>
+                            <p id="cidadeReceptorNota">XXXXXXXXXX</p>
+                        </div>
+                        <div>
+                            <h4>UF: </h4>
+                            <p id="UFreceptorNota">XX</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <h4>Descrição do Serviço</h4>
+            <div class="dados">
+
+                <div class="id2">
+
+                    <div class="descricaoServico">
+                        <h4>Descricao do Servico: </h4>
+                        <p id="descricaoServico">XXXXXXXXXXXXXXXXX</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="valores">
+
+                <div class="valorTotal">
+                    <p>Valor Total: </p>
+                    <h2 id="resultadoValorTotal">xxxxx,xx</h2>
+                </div>
+                <div class="id3">
+                    <div class="valorTotal">
+                        <p>Base de Cálculo: </p>
+                        <h2 id="resultadoValorTotal1">xxxxx,xx</h2>
+                    </div>
+                    <div class="aliquota">
+                        <h4>Aliquota (%):</h4>
+                        <p id="resultadoImposto">XXXXXX</p>
+                    </div>
+                    <div class="iss">
+                        <h4>Valor iss (R$): </h4>
+                        <p id="resultadoValorImposto">XXXXXXX</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="mais">
+                <h3>Outras Informações</h3>
+                <p>
+                    --
+
+                </p>
+                <p>
+                    --
+
+                </p>
+               
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="/index.js"></script>
+
+</body>
+
+</html>
